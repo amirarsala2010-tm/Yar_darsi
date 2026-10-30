@@ -1,0 +1,16 @@
+{
+  "name": "یار درسی",
+  "short_name": "یار درسی",
+  "description": "دستیار هوشمند درسی دهم ریاضی فیزیک",
+  "lang": "fa",
+  "dir": "rtl",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0f172a",
+  "theme_color": "#4f46e5",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
