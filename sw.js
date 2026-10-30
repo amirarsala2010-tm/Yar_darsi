@@ -1,5 +1,5 @@
-const CACHE = 'yar-darsi-v1';
-const ASSETS = ['./', './index.html', './manifest.json', './icon.svg'];
+const CACHE = 'yar-darsi-v3';
+const ASSETS = ['./', './index.html', './manifest.json', './icon-192.png', './icon-512.png', './logo-96.png'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(ASSETS)).then(() => self.skipWaiting()));
@@ -20,6 +20,6 @@ self.addEventListener('fetch', (e) => {
       const copy = res.clone();
       caches.open(CACHE).then((c) => c.put(req, copy));
       return res;
-    }).catch(() => caches.match(req).then((r) => r || caches.match('./index.html')))
+    }).catch(() => caches.match(req, { ignoreSearch: true }).then((r) => r || caches.match('./index.html')))
   );
 });

@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#4f46e5">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<title>یار درسی</title>
+<style>
+:root{--acc:#6366f1;--acc2:#8b5cf6;--bg:#0b1020;--card:#151b2e;--card2:#1d2540;--tx:#eef1fb;--mut:#8f9ab8;--bd:#273052;--ok:#22c55e;--bad:#ef4444;--warn:#f59e0b;--warnbg:#3a2a0a;--warntx:#fde68a;--sh:0 6px 24px #0006;--fs:15px;color-scheme:dark}
+html[data-mode=light]{--bg:#f3f5fb;--card:#fff;--card2:#eef1fa;--tx:#171c33;--mut:#66708f;--bd:#dde2f1;--warnbg:#fff4d6;--warntx:#7a4d00;--sh:0 4px 18px #1b254a1f;color-scheme:light}
+@media(prefers-color-scheme:light){html[data-mode=auto]{--bg:#f3f5fb;--card:#fff;--card2:#eef1fa;--tx:#171c33;--mut:#66708f;--bd:#dde2f1;--warnbg:#fff4d6;--warntx:#7a4d00;--sh:0 4px 18px #1b254a1f;color-scheme:light}}
+html[data-accent=emerald]{--acc:#10b981;--acc2:#06b6d4}
+html[data-accent=rose]{--acc:#f43f5e;--acc2:#f97316}
+html[data-accent=amber]{--acc:#f59e0b;--acc2:#ef4444}
+html[data-accent=sky]{--acc:#0ea5e9;--acc2:#6366f1}
+html[data-accent=violet]{--acc:#a855f7;--acc2:#ec4899}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{font-size:var(--fs)}
+html,body{margin:0;background:var(--bg);color:var(--tx);font-family:Vazirmatn,Tahoma,"Segoe UI",system-ui,sans-serif;line-height:1.7}
+body{padding-bottom:calc(76px + env(safe-area-inset-bottom))}
+.ic{display:block;flex:none}
+header{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:10px;padding:10px 14px;padding-top:calc(10px + env(safe-area-inset-top));background:linear-gradient(135deg,var(--acc),var(--acc2));color:#fff;box-shadow:var(--sh)}
+header .logo{width:34px;height:34px;border-radius:10px;overflow:hidden;flex:none;box-shadow:0 2px 8px #0004}
+header h1{flex:1;margin:0;font-size:1.15rem}
+header button{background:#ffffff2b;border:0;color:#fff;border-radius:12px;width:38px;height:38px;display:grid;place-items:center;cursor:pointer}
+main{padding:14px;max-width:720px;margin:auto}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:14px;margin-bottom:12px;box-shadow:var(--sh)}
+.card h3{margin:0 0 8px;font-size:1.05rem;display:flex;align-items:center;gap:6px}
+.row{display:flex;gap:8px;align-items:center}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.g3{grid-template-columns:repeat(3,1fr)}
+.stat{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:10px 6px;text-align:center;box-shadow:var(--sh)}
+.stat b{display:block;font-size:1.35rem}
+.stat small,.mut{color:var(--mut);font-size:.84rem}
+.btn{background:linear-gradient(135deg,var(--acc),var(--acc2));color:#fff;border:0;border-radius:13px;padding:10px 14px;font:inherit;font-weight:700;cursor:pointer}
+.btn.sec{background:var(--card2);color:var(--tx);border:1px solid var(--bd);font-weight:500}
+.btn.sm{padding:5px 10px;font-size:.85rem;border-radius:10px}
+.btn.full{width:100%}
+.btn:disabled{opacity:.5}
+.btn.red{background:#b91c1c;color:#fff}
+.q{display:block;background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:12px 8px;text-align:center;color:var(--tx);font:inherit;cursor:pointer;box-shadow:var(--sh)}
+.q .qi{width:46px;height:46px;border-radius:14px;margin:0 auto 6px;display:grid;place-items:center;background:color-mix(in srgb,var(--acc) 16%,transparent);color:var(--acc)}
+input,select,textarea{width:100%;background:var(--bg);color:var(--tx);border:1px solid var(--bd);border-radius:12px;padding:10px;font:inherit;margin:4px 0}
+input:focus,select:focus,textarea:focus{outline:2px solid color-mix(in srgb,var(--acc) 55%,transparent);outline-offset:0}
+textarea{min-height:90px;resize:vertical}
+label{font-size:.85rem;color:var(--mut)}
+nav{position:fixed;bottom:0;inset-inline:0;z-index:6;display:flex;background:var(--card);border-top:1px solid var(--bd);padding:4px 4px env(safe-area-inset-bottom);box-shadow:0 -4px 20px #0003}
+nav button{flex:1;background:none;border:0;color:var(--mut);padding:4px 2px;font:inherit;font-size:.72rem;cursor:pointer}
+nav .ico{display:grid;place-items:center;width:54px;height:30px;margin:0 auto 2px;border-radius:99px;transition:.2s}
+nav button.on{color:var(--acc);font-weight:700}
+nav button.on .ico{background:color-mix(in srgb,var(--acc) 18%,transparent)}
+.msgs{display:flex;flex-direction:column;gap:8px;min-height:40vh;max-height:55vh;overflow-y:auto;padding:4px}
+.m{max-width:88%;padding:9px 12px;border-radius:16px;word-wrap:break-word;overflow-wrap:anywhere}
+.m.u{align-self:flex-start;background:var(--acc);color:#fff;border-bottom-right-radius:4px}
+.m.a{align-self:flex-end;background:var(--card2);border-bottom-left-radius:4px}
+.m img{max-width:100%;border-radius:10px;display:block;margin-bottom:6px}
+.m pre,.out pre{direction:ltr;text-align:left;background:var(--bg);padding:8px;border-radius:8px;overflow-x:auto;white-space:pre-wrap}
+code{background:var(--bg);padding:1px 5px;border-radius:5px;direction:ltr;unicode-bidi:embed}
+.li{padding-inline-start:4px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
+.chip{background:var(--card2);border:1px solid var(--bd);color:var(--tx);border-radius:999px;padding:4px 12px;font:inherit;font-size:.85rem;cursor:pointer}
+.chip.on{background:var(--acc);border-color:var(--acc);color:#fff}
+.opt{display:block;width:100%;text-align:start;background:var(--card2);border:2px solid var(--bd);color:var(--tx);border-radius:12px;padding:10px;margin:6px 0;font:inherit;cursor:pointer}
+.opt.sel{border-color:var(--acc);background:color-mix(in srgb,var(--acc) 18%,transparent)}
+.ok{border-color:var(--ok)!important}
+.no{border-color:var(--bad)!important}
+.bar{height:8px;background:var(--card2);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--acc),var(--acc2));border-radius:99px}
+.flash{min-height:180px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:1.2rem;background:var(--card2);border-radius:16px;padding:16px;margin:10px 0}
+.task{display:flex;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid var(--bd)}
+.task:last-child{border:0}
+.task input{width:22px;height:22px;margin:0;accent-color:var(--acc)}
+.task.done span{text-decoration:line-through;color:var(--mut)}
+.tag{display:inline-block;background:color-mix(in srgb,var(--acc) 16%,transparent);border-radius:8px;padding:0 8px;font-size:.8rem;color:var(--acc)}
+.toast{position:fixed;bottom:92px;inset-inline:16px;z-index:20;background:var(--card);color:var(--tx);border:1px solid var(--acc);border-radius:14px;padding:10px 14px;text-align:center;box-shadow:var(--sh)}
+.ov{position:fixed;inset:0;background:#000b;z-index:15;display:flex;align-items:center;justify-content:center;padding:16px}
+.ov .card{width:100%;max-width:420px;max-height:90vh;overflow:auto;margin:0}
+.timer{font-size:3.6rem;font-weight:800;text-align:center;direction:ltr;font-variant-numeric:tabular-nums}
+.spin{display:inline-block;width:16px;height:16px;border:3px solid #fff5;border-top-color:#fff;border-radius:50%;animation:r .8s linear infinite;vertical-align:middle}
+@keyframes r{to{transform:rotate(360deg)}}
+.warn{background:var(--warnbg);border-color:var(--warn)}
+.warn .wtx{color:var(--warntx)}
+.out{background:var(--card2);border-radius:12px;padding:12px;margin-top:10px}
+svg text{fill:var(--mut);font-size:11px;font-family:inherit}
+.hero{background:linear-gradient(135deg,var(--acc),var(--acc2));color:#fff;border-radius:22px;padding:16px;margin-bottom:12px;display:flex;align-items:center;gap:14px;box-shadow:var(--sh);position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;inset-inline-end:-40px;top:-60px;width:170px;height:170px;border-radius:50%;background:#ffffff14}
+.hero>div{position:relative;z-index:1}
+.hero h2{margin:0;font-size:1.2rem}
+.hero p{margin:2px 0 8px;opacity:.92;font-size:.88rem}
+.pill{display:inline-flex;align-items:center;gap:4px;background:#ffffff2e;border-radius:99px;padding:2px 10px;font-size:.82rem}
+.ring{width:104px;height:104px;flex:none;position:relative;z-index:1}
+.big{font-size:2.6rem;font-weight:800;line-height:1.1}
+.prog{display:flex;align-items:center;gap:10px;margin:8px 0}
+.prog span:first-child{width:92px;font-size:.85rem;flex:none}
+.prog .bar{flex:1}
+.prog small{width:48px;text-align:end;color:var(--mut)}
+.seg{display:flex;background:var(--card2);border-radius:13px;padding:3px;gap:3px;margin-top:4px}
+.seg button{flex:1;border:0;background:none;color:var(--mut);padding:7px 4px;border-radius:10px;font:inherit;font-size:.85rem;cursor:pointer}
+.seg button.on{background:var(--card);color:var(--tx);box-shadow:var(--sh);font-weight:700}
+.sw{position:relative;display:inline-block;width:46px;height:26px;flex:none}
+.sw input{opacity:0;width:100%;height:100%;position:absolute;margin:0;z-index:1;cursor:pointer}
+.sw i{position:absolute;inset:0;background:var(--bd);border-radius:99px;transition:.2s}
+.sw i::after{content:"";position:absolute;top:3px;inset-inline-start:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:.2s}
+.sw input:checked+i{background:var(--acc)}
+.sw input:checked+i::after{inset-inline-start:23px}
+.setrow{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 0}
+.swatches{display:flex;gap:12px;flex-wrap:wrap;margin-top:6px}
+.swatch{width:36px;height:36px;border-radius:50%;border:3px solid transparent;cursor:pointer;padding:0;box-shadow:0 0 0 1px var(--bd)}
+.swatch.on{border-color:var(--card);box-shadow:0 0 0 3px var(--tx)}
+.sect{display:flex;align-items:center;gap:8px;color:var(--mut);font-size:.85rem;margin:18px 4px 8px;font-weight:700}
+.sect .ic{margin:0}
+.avatar{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--acc),var(--acc2));display:grid;place-items:center;font-size:1.5rem;font-weight:800;color:#fff;flex:none}
+</style>
+</head>
+<body>
+<header><div class="logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="34" height="34"><defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4f46e5"/><stop offset="1" stop-color="#a855f7"/></linearGradient><linearGradient id="pg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#dfe3ff"/></linearGradient></defs><rect width="512" height="512" fill="url(#bg)"/><circle cx="410" cy="96" r="150" fill="#ffffff" opacity=".07"/><g transform="translate(0,24)"><path d="M256 372C222 342 164 332 112 344V204C164 192 222 202 256 232Z" fill="url(#pg)"/><path d="M256 372C290 342 348 332 400 344V204C348 192 290 202 256 232Z" fill="#ffffff" opacity=".88"/><path d="M256 232V372" stroke="#6d5ee8" stroke-width="6" stroke-linecap="round" opacity=".5"/><path d="M142 232c26-4 56 0 86 14M142 262c26-4 56 0 86 14" stroke="#6d5ee8" stroke-width="7" stroke-linecap="round" opacity=".35" fill="none"/><path d="M370 232c-26-4-56 0-86 14M370 262c-26-4-56 0-86 14" stroke="#6d5ee8" stroke-width="7" stroke-linecap="round" opacity=".3" fill="none"/><path d="M256 92L271 134L313 149L271 164L256 206L241 164L199 149L241 134Z" fill="#fbbf24"/><circle cx="326" cy="112" r="9" fill="#fde68a"/><circle cx="188" cy="118" r="6" fill="#fde68a" opacity=".8"/></g></svg></div><h1 id="ttl">یار درسی</h1><button id="hb1" data-a="pomo" aria-label="تایمر تمرکز"></button><button id="hb2" data-a="settings" aria-label="تنظیمات"></button></header>
+<main id="app"></main>
+<nav id="nav"></nav>
+<input type="file" id="file" accept="image/*" hidden>
+<script>
+/* ============ ابزارها ============ */
+const $=(s,r=document)=>r.querySelector(s);
+const fa=n=>Number(n).toLocaleString('fa-IR');
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const iso=d=>d.toLocaleDateString('sv-SE');
+const today=()=>iso(new Date());
+const fromIso=s=>new Date(s+'T12:00:00');
+const addDays=(s,n)=>{const d=fromIso(s);d.setDate(d.getDate()+n);return iso(d)};
+const pf=(s,o={weekday:'long',day:'numeric',month:'long'})=>new Intl.DateTimeFormat('fa-IR-u-ca-persian',o).format(typeof s==='string'?fromIso(s):s);
+const uid=()=>Math.random().toString(36).slice(2,9);
+const ICON={
+home:'<path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/>',
+tutor:'<path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2.5 9 2.5 12 0v-5"/><path d="M22 9v6"/>',
+quiz:'<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 14l2 2 4-4"/>',
+cards:'<path d="M12 3l9 5-9 5-9-5z"/><path d="M3 12.5l9 5 9-5"/><path d="M3 17l9 5 9-5"/>',
+plan:'<rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/>',
+stats:'<path d="M5 21V10M12 21V4M19 21v-7"/>',
+timer:'<circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9 2h6"/>',
+settings:'<path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/>',
+notes:'<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/>',
+target:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/>',
+refresh:'<path d="M20 11a8 8 0 0 0-14-4M4 4v4h4M4 13a8 8 0 0 0 14 4M20 20v-4h-4"/>',
+flame:'<path d="M12 3c1 4 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-5 1-9z"/>',
+palette:'<circle cx="12" cy="12" r="9"/><circle cx="8" cy="11" r="1"/><circle cx="12" cy="7.5" r="1"/><circle cx="16" cy="11" r="1"/>',
+sparkles:'<path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 17v4M17 19h4"/>',
+data:'<ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/>',
+book:'<path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 21V5"/>',
+user:'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/>',
+hourglass:'<path d="M6 3h12M6 21h12M7 3c0 5 5 6 5 9s-5 4-5 9M17 3c0 5-5 6-5 9s5 4 5 9"/>'
+};
+const ic=(n,s=22)=>`<svg class="ic" width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">${ICON[n]||''}</svg>`;
+const act=()=>(typeof S!=='undefined'&&S&&S.subjects&&S.subjects.length)?S.subjects:SUBJECTS;
+
+const SUBJECTS=['ریاضی ۱','هندسه ۱','فیزیک ۱','شیمی ۱','زیست‌شناسی ۱','فارسی ۱','نگارش ۱','عربی ۱','زبان انگلیسی ۱','دین و زندگی ۱','آمادگی دفاعی','سلامت و بهداشت','تفکر و سواد رسانه‌ای','کارگاه کارآفرینی و تولید'];
+const subjOpts=(sel,all)=>(all?'<option value="">همه درس‌ها</option>':'')+act().map(s=>`<option ${s===sel?'selected':''}>${s}</option>`).join('');
+function md(t){t=esc(t);t=t.replace(/```(?:\w+)?\n?([\s\S]*?)```/g,'<pre>$1</pre>').replace(/`([^`\n]+)`/g,'<code>$1</code>').replace(/\*\*([^*]+)\*\*/g,'<b>$1</b>').replace(/^#{1,4}\s*(.+)$/gm,'<b>$1</b>').replace(/^\s*[-*•]\s+(.+)$/gm,'<div class="li">• $1</div>').replace(/\n/g,'<br>').replace(/<\/div><br>/g,'</div>');return t}
+function pj(t){const a=t.search(/[\[{]/);const b=Math.max(t.lastIndexOf(']'),t.lastIndexOf('}'));if(a<0||b<a)throw new Error('پاسخ هوش مصنوعی قابل خواندن نبود، دوباره امتحان کن');return JSON.parse(t.slice(a,b+1))}
+function toast(m,ms=2600){const t=document.createElement('div');t.className='toast';t.textContent=m;document.body.appendChild(t);setTimeout(()=>t.remove(),ms)}
+
+/* ============ ذخیره‌سازی ============ */
+const KEY='yar_darsi_v1';
+const DEF={name:'',cfg:{provider:'anthropic',key:'',base:'https://api.openai.com/v1',model:'claude-sonnet-5-5'},chat:{},cards:[],exams:[],plan:[],quizzes:[],weak:{},log:{},hours:3,notify:false,mode:'auto',accent:'indigo',fs:15,goal:60,tone:'دوستانه',len:'متوسط',subjects:SUBJECTS.slice(),subjLog:{}};
+let S;
+try{S=Object.assign({},DEF,JSON.parse(localStorage.getItem(KEY)||'{}'));S.cfg=Object.assign({},DEF.cfg,S.cfg)}catch(e){S=structuredClone(DEF)}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){toast('حافظه پر است')}};
+
+/* ============ هوش مصنوعی ============ */
+const SYS_BASE=`تو «یار درسی»، معلم خصوصی مهربان و دقیق یک دانش‌آموز پایه دهم رشته ریاضی فیزیک در ایران هستی. بر اساس کتاب‌های درسی رسمی ایران پاسخ بده. فارسی ساده و دوستانه بنویس. مرحله‌به‌مرحله توضیح بده و کوتاه و مفید باش. فرمول‌ها را با متن ساده و نمادهای یونیکد بنویس (مثل x² ، √ ، ½ ، Δ ، ×) و هرگز از LaTeX یا علامت $ استفاده نکن. اگر از درستی چیزی مطمئن نیستی، صادقانه بگو.`;
+function sys(){const t={'دوستانه':'لحن گرم، دوستانه و تشویق‌کننده داشته باش.','جدی':'لحن جدی، رسمی و کاملاً علمی داشته باش.','انگیزشی':'لحن انگیزشی و پرانرژی داشته باش و دانش‌آموز را تشویق کن.'}[S.tone]||'';const l={'کوتاه':'جواب‌ها را بسیار کوتاه و فشرده بنویس.','مفصل':'جواب‌ها را کامل و مفصل همراه با مثال بنویس.'}[S.len]||'';return SYS_BASE+' '+t+' '+l}
+async function ai(msgs,{system=sys(),max=2500}={}){
+  const c=S.cfg;if(!c.key)throw new Error('NOKEY');
+  if(c.provider==='anthropic'){
+    const m=msgs.map(x=>({role:x.role,content:x.img?[{type:'image',source:{type:'base64',media_type:x.img.type,data:x.img.data}},{type:'text',text:x.text||'این تصویر را بررسی کن.'}]:x.text}));
+    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'content-type':'application/json','x-api-key':c.key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:c.model,max_tokens:max,system,messages:m})});
+    const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error?.message||('خطا '+r.status));
+    return (j.content||[]).map(b=>b.text||'').join('');
+  }
+  const m=[{role:'system',content:system},...msgs.map(x=>({role:x.role,content:x.img?[{type:'text',text:x.text||'این تصویر را بررسی کن.'},{type:'image_url',image_url:{url:x.img.url}}]:x.text}))];
+  const r=await fetch(c.base.replace(/\/$/,'')+'/chat/completions',{method:'POST',headers:{'content-type':'application/json',authorization:'Bearer '+c.key},body:JSON.stringify({model:c.model,max_tokens:max,messages:m})});
+  const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error?.message||('خطا '+r.status));
+  return j.choices?.[0]?.message?.content||'';
+}
+const aiErr=e=>e.message==='NOKEY'?'اول از ⚙️ تنظیمات، کلید API رو وارد کن':(e.message==='Failed to fetch'?'اتصال به هوش مصنوعی برقرار نشد (اینترنت/VPN یا آدرس را بررسی کن)':e.message);
+async function pickImage(){
+  return new Promise(res=>{const f=$('#file');f.value='';f.onchange=()=>{const file=f.files[0];if(!file)return res(null);const img=new Image();const u=URL.createObjectURL(file);img.onload=()=>{const k=Math.min(1,1280/Math.max(img.width,img.height));const c=document.createElement('canvas');c.width=img.width*k;c.height=img.height*k;c.getContext('2d').drawImage(img,0,0,c.width,c.height);const url=c.toDataURL('image/jpeg',.82);URL.revokeObjectURL(u);res({type:'image/jpeg',data:url.split(',')[1],url})};img.src=u};f.click()});
+}
+const busy=(b,on)=>{if(!b)return;if(on){b.dataset.t=b.innerHTML;b.innerHTML='<span class="spin"></span>';b.disabled=true}else{b.innerHTML=b.dataset.t;b.disabled=false}};
+
+/* ============ منطق مشترک ============ */
+const addLog=(m,sub)=>{const t=today();S.log[t]=(S.log[t]||0)+m;if(S.log[t]<0)S.log[t]=0;if(sub&&m){S.subjLog=S.subjLog||{};S.subjLog[sub]=Math.max(0,(S.subjLog[sub]||0)+m)}};
+function streak(){let n=0,d=today();if(!S.log[d])d=addDays(d,-1);while(S.log[d]>0){n++;d=addDays(d,-1)}return n}
+const dueCards=()=>S.cards.filter(c=>c.due<=today());
+function weakList(n=5){return Object.values(S.weak).filter(w=>w.w>0).sort((a,b)=>b.w*(b.w/b.n)-a.w*(a.w/a.n)).slice(0,n)}
+function rateCard(c,r){
+  if(r===1){c.ease=Math.max(1.3,c.ease-.2);c.reps=0;c.iv=1}
+  else if(r===2){c.iv=c.reps===0?1:c.reps===1?3:Math.round(c.iv*c.ease);c.reps++}
+  else{c.iv=Math.max(3,Math.round((c.iv||1)*c.ease*1.3));c.ease+=.1;c.reps++}
+  c.due=addDays(today(),c.iv);
+}
+
+/* ============ ناوبری ============ */
+const TABS=[['home','home','خانه'],['tutor','tutor','معلم'],['quiz','quiz','آزمون'],['cards','cards','کارت‌ها'],['plan','plan','برنامه'],['stats','stats','آمار']];
+const TITLES={home:'یار درسی',tutor:'معلم خصوصی',quiz:'آزمون',cards:'فلش‌کارت',plan:'برنامه‌ریزی',stats:'آمار پیشرفت',notes:'خلاصه‌ساز جزوه',settings:'تنظیمات'};
+let tab='home';
+function go(t){tab=t;$('#nav').innerHTML=TABS.map(x=>`<button class="${x[0]===t||(t==='notes'&&x[0]==='home')?'on':''}" data-a="go" data-t="${x[0]}"><i class="ico">${ic(x[1],22)}</i>${x[2]}</button>`).join('');$('#ttl').textContent=TITLES[t]||'یار درسی';$('#app').innerHTML=V[t]();if(V[t+'Init'])V[t+'Init']();scrollTo(0,0)}
+
+/* ============ صفحات ============ */
+const V={};
+const noKeyBanner=()=>S.cfg.key?'':`<div class="card warn"><b>⚠️ هوش مصنوعی وصل نیست</b><div class="mut wtx">برای کار کردن معلم، آزمون‌ساز و برنامه‌ریز، کلید API رو توی ⚙️ تنظیمات وارد کن.</div><button class="btn sm" style="margin-top:8px" data-a="settings">رفتن به تنظیمات</button></div>`;
+
+V.home=()=>{
+  const t=today(),tasks=S.plan.filter(p=>p.date===t),ex=S.exams.filter(e=>e.date>=t).sort((a,b)=>a.date.localeCompare(b.date))[0];
+  const left=ex?Math.round((fromIso(ex.date)-fromIso(t))/864e5):0;
+  const mins=S.log[t]||0,goal=S.goal||60,pct=Math.min(1,mins/goal),C=2*Math.PI*42,hr=new Date().getHours();
+  const g=hr<5?'شب بخیر':hr<12?'صبح بخیر':hr<17?'ظهر بخیر':hr<20?'عصر بخیر':'شب بخیر';
+  const ds=[...Array(7)].map((_,i)=>addDays(t,i-6)),mx=Math.max(goal,...ds.map(d=>S.log[d]||0)),wk=ds.reduce((a,d)=>a+(S.log[d]||0),0);
+  const bars=ds.map((d,i)=>{const v=S.log[d]||0,h=v?Math.max(5,v/mx*62):0,x=10+i*44;return `<rect x="${x}" y="${72-h}" width="26" height="${h}" rx="7" style="fill:var(--acc);opacity:${d===t?1:.45}"/><text x="${x+13}" y="89" text-anchor="middle">${pf(d,{weekday:'narrow'})}</text>`}).join('');
+  const sl=Object.entries(S.subjLog||{}).filter(x=>x[1]>0).sort((a,b)=>b[1]-a[1]).slice(0,4),sm=sl[0]?sl[0][1]:1;
+  return `${noKeyBanner()}
+  <div class="hero"><div style="flex:1"><h2>${g} ${esc(S.name)||'دوست من'}</h2><p>${pf(t)}<br>${fa(mins)} از ${fa(goal)} دقیقه‌ی هدف امروز</p><span class="pill">${ic('flame',14)} ${streak()?fa(streak())+' روز پیاپی':'امروز شروع کن!'}</span></div>
+  <svg class="ring" viewBox="0 0 100 100"><circle cx="50" cy="50" r="42" fill="none" stroke="#ffffff40" stroke-width="9"/><circle cx="50" cy="50" r="42" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${C*(1-pct)}" transform="rotate(-90 50 50)"/><text x="50" y="57" text-anchor="middle" style="fill:#fff;font-size:22px;font-weight:800">${fa(Math.round(pct*100))}٪</text></svg></div>
+  <div class="grid g3" style="margin-bottom:12px"><div class="stat"><b>${fa(dueCards().length)}</b><small>کارت برای مرور</small></div><div class="stat"><b>${fa(tasks.filter(x=>!x.done).length)}</b><small>کار باقی‌مانده</small></div><div class="stat"><b>${fa(S.quizzes.length)}</b><small>آزمون داده‌شده</small></div></div>
+  ${ex?`<div class="card row"><div style="text-align:center;min-width:84px"><div class="big" style="color:var(--acc)">${fa(left)}</div><small class="mut">روز مانده</small></div><div style="flex:1"><h3 style="margin:0">${ic('hourglass',18)} امتحان بعدی</h3><b>${esc(ex.subject)}</b><div class="mut">${pf(ex.date)}${left===0?' · امروز است، موفق باشی!':''}</div></div></div>`:''}
+  <div class="card"><h3>${ic('stats',18)} این هفته <span class="mut" style="margin-inline-start:auto;font-weight:400">${fa(Math.round(wk/6)/10)} ساعت</span></h3><svg viewBox="0 0 320 94" width="100%">${bars}</svg></div>
+  ${sl.length?`<div class="card"><h3>${ic('book',18)} بیشترین مطالعه</h3>${sl.map(([n,m])=>`<div class="prog"><span>${esc(n)}</span><div class="bar"><i style="width:${Math.max(6,m/sm*100)}%"></i></div><small>${fa(m)}د</small></div>`).join('')}</div>`:''}
+  <div class="card"><h3>${ic('plan',18)} برنامه امروز</h3>${tasks.length?tasks.map(taskHtml).join(''):'<div class="mut">برای امروز برنامه‌ای نداری. از تب «برنامه» بساز.</div>'}</div>
+  <div class="grid"><button class="q" data-a="pomo"><div class="qi">${ic('timer',24)}</div>تایمر تمرکز</button><button class="q" data-a="go" data-t="notes"><div class="qi">${ic('notes',24)}</div>خلاصه‌ساز جزوه</button><button class="q" data-a="weakquiz"><div class="qi">${ic('target',24)}</div>تمرین ضعف‌ها</button><button class="q" data-a="review"><div class="qi">${ic('refresh',24)}</div>مرور کارت‌ها</button></div>`;
+};
+const taskHtml=p=>`<label class="task ${p.done?'done':''}"><input type="checkbox" data-a="task" data-id="${p.id}" ${p.done?'checked':''}><span><span class="tag">${esc(p.subject)}</span> ${esc(p.topic)} <small class="mut">(${fa(p.minutes)} دقیقه)</small></span></label>`;
+
+/* ---- معلم ---- */
+let tSubj='ریاضی ۱',tImg=null;
+V.tutor=()=>`${noKeyBanner()}<div class="card"><label>درس</label><select id="tsub" data-a="tsub">${subjOpts(tSubj)}</select>
+<div class="msgs" id="msgs"></div><div id="timg"></div>
+<div class="chips">${['ساده‌تر توضیح بده','یه مثال بزن','یه تمرین بهم بده','نکته امتحانی‌ش چیه؟'].map(c=>`<button class="chip" data-a="chip" data-v="${c}">${c}</button>`).join('')}</div>
+<div class="row"><button class="btn sec" data-a="timgpick">📷</button><input id="cin" placeholder="سوالت رو بپرس..." style="margin:0"><button class="btn" data-a="send">ارسال</button></div>
+<button class="btn sec sm" style="margin-top:8px" data-a="clearchat">🗑 پاک کردن گفتگوی این درس</button></div>`;
+V.tutorInit=()=>{drawChat();$('#cin').addEventListener('keydown',e=>{if(e.key==='Enter')send()})};
+function drawChat(){const m=S.chat[tSubj]||[];const el=$('#msgs');if(!el)return;el.innerHTML=m.length?m.map(x=>`<div class="m ${x.role==='user'?'u':'a'}">${x.img?'<img src="'+x.img+'">':''}${md(x.text)}</div>`).join(''):`<div class="mut" style="text-align:center;margin:auto">هر سوالی درباره‌ی ${esc(tSubj)} داری بپرس 🙂<br>می‌تونی عکس تمرین هم بفرستی</div>`;el.scrollTop=el.scrollHeight}
+async function send(txt){
+  const inp=$('#cin');const text=(txt??inp.value).trim();if(!text&&!tImg)return;if(inp)inp.value='';
+  const h=S.chat[tSubj]=S.chat[tSubj]||[];const img=tImg;tImg=null;$('#timg').innerHTML='';
+  h.push({role:'user',text:text||'این تصویر را بررسی کن.',img:img?img.url:null});drawChat();
+  const el=$('#msgs');el.insertAdjacentHTML('beforeend','<div class="m a" id="typing"><span class="spin"></span></div>');el.scrollTop=el.scrollHeight;
+  try{
+    const ctx=h.slice(-12).map((x,i,a)=>({role:x.role,text:x.text,img:(x.img&&i===a.length-1&&img)?img:null}));
+    const r=await ai(ctx,{system:sys()+` درس فعلی: ${tSubj}.`});
+    h.push({role:'assistant',text:r});
+  }catch(e){h.pop();toast(aiErr(e),4000)}
+  if(S.chat[tSubj].length>40)S.chat[tSubj]=S.chat[tSubj].slice(-40);
+  save();drawChat();
+}
+
+/* ---- آزمون ---- */
+let Q={state:'setup'};
+V.quiz=()=>{
+  if(Q.state==='setup')return `${noKeyBanner()}<div class="card"><h3>📝 ساخت آزمون</h3>
+  <label>درس</label><select id="qs">${subjOpts('ریاضی ۱')}</select>
+  <label>مبحث (مثلاً «معادله درجه دوم» یا «حرکت‌شناسی»)</label><input id="qt" placeholder="خالی = کل کتاب">
+  <label>نوع سوال</label><select id="qy"><option value="mcq">تستی</option><option value="desc">تشریحی</option><option value="fill">جای‌خالی</option><option value="mix">ترکیبی</option></select>
+  <div class="grid"><div><label>سختی</label><select id="qd"><option>آسان</option><option selected>متوسط</option><option>سخت</option><option>چالشی (المپیادی)</option></select></div><div><label>تعداد</label><select id="qn"><option>5</option><option selected>8</option><option>10</option><option>15</option></select></div></div>
+  <button class="btn full" style="margin-top:10px" data-a="qstart">شروع آزمون</button></div>
+  ${S.quizzes.length?`<div class="card"><h3>آخرین آزمون‌ها</h3>${S.quizzes.slice(-5).reverse().map(q=>`<div class="row" style="justify-content:space-between"><span>${esc(q.subject)}</span><span class="mut">${pf(q.date,{day:'numeric',month:'short'})}</span><b>${fa(q.pct)}٪</b></div>`).join('')}</div>`:''}`;
+  if(Q.state==='run'){
+    const q=Q.qs[Q.i],pct=Q.i/Q.qs.length*100;
+    return `<div class="card"><div class="row mut"><span>سوال ${fa(Q.i+1)} از ${fa(Q.qs.length)}</span><span style="margin-inline-start:auto">${esc(Q.subject)}</span></div><div class="bar" style="margin:6px 0 12px"><i style="width:${pct}%"></i></div>
+    <div style="font-size:16px;margin-bottom:8px">${md(q.q)}</div>
+    ${q.type==='mcq'?q.options.map((o,i)=>`<button class="opt ${Q.ans[Q.i]===i?'sel':''}" data-a="qopt" data-i="${i}">${esc(o)}</button>`).join(''):q.type==='fill'?`<input id="qa" placeholder="جواب..." value="${esc(Q.ans[Q.i]||'')}">`:`<textarea id="qa" placeholder="پاسخ تشریحی...">${esc(Q.ans[Q.i]||'')}</textarea>`}
+    <div class="row" style="margin-top:10px"><button class="btn sec" data-a="qskip">${Q.i+1<Q.qs.length?'ردکردن':'پایان'}</button><button class="btn full" data-a="qnext">${Q.i+1<Q.qs.length?'بعدی ←':'پایان و تصحیح ✅'}</button></div></div>`;
+  }
+  if(Q.state==='grading')return `<div class="card" style="text-align:center"><span class="spin"></span><p>در حال تصحیح...</p></div>`;
+  if(Q.state==='done'){
+    return `<div class="card" style="text-align:center"><h3>نتیجه</h3><div style="font-size:44px;font-weight:800">${fa(Q.pct)}٪</div><div>${Q.pct>=80?'عالی بود! 🎉':Q.pct>=50?'خوبه، با مرور بهتر می‌شه 💪':'نگران نباش، از اشتباه‌ها یاد می‌گیریم 🌱'}</div></div>
+    ${Q.qs.map((q,i)=>{const r=Q.res[i];return `<div class="card ${r.s>=1?'ok':r.s>0?'':'no'}" style="border-width:2px"><div class="mut">${esc(q.topic||'')}</div>${md(q.q)}<div style="margin-top:6px"><b>پاسخ تو:</b> ${r.mine!=null?esc(r.mine):'—'}</div><div><b>پاسخ درست:</b> ${esc(r.correct)}</div>${r.fb?`<div class="out">${md(r.fb)}</div>`:''}</div>`}).join('')}
+    <div class="row"><button class="btn sec full" data-a="qcards">🃏 اشتباه‌ها → فلش‌کارت</button><button class="btn full" data-a="qreset">آزمون جدید</button></div>`;
+  }
+};
+const qIndex=i=>'الف،ب،ج،د'.split('،')[i];
+async function startQuiz(o){
+  const b=$('[data-a=qstart]');busy(b,true);
+  const tm={mcq:'همه سوال‌ها تستی چهارگزینه‌ای',desc:'همه سوال‌ها تشریحی',fill:'همه سوال‌ها جای‌خالی با پاسخ کوتاه',mix:'ترکیبی از تستی، تشریحی و جای‌خالی'}[o.type];
+  const prompt=`${o.count} سوال برای درس «${o.subject}» ${o.topic?'درباره: '+o.topic:'از مباحث مختلف کتاب'} بساز. سطح سختی: ${o.diff}. ${tm}. ${o.extra||''}
+فقط یک آرایه JSON معتبر برگردان، بدون هیچ متن دیگر. هر عنصر:
+{"type":"mcq|desc|fill","q":"متن سوال","options":["گزینه۱","گزینه۲","گزینه۳","گزینه۴"],"answer":0,"explain":"توضیح کوتاه پاسخ","topic":"نام مبحث"}
+برای mcq فیلد answer شماره گزینه درست (۰ تا ۳) و options الزامی است. برای desc و fill فیلد answer متن پاسخ درست است و options نیاید. سوال‌های جای‌خالی را با ____ مشخص کن. بدون LaTeX.`;
+  try{
+    const r=pj(await ai([{role:'user',text:prompt}],{max:4500}));
+    const qs=r.filter(x=>x&&x.q&&(x.type!=='mcq'||(Array.isArray(x.options)&&x.options.length>=2))).slice(0,o.count);
+    if(!qs.length)throw new Error('سوالی ساخته نشد');
+    Q={state:'run',subject:o.subject,qs,i:0,ans:[]};go('quiz');
+  }catch(e){toast(aiErr(e),4500)}
+  busy(b,false);
+}
+function qCollect(){const el=$('#qa');if(el)Q.ans[Q.i]=el.value}
+async function finishQuiz(){
+  Q.state='grading';go('quiz');
+  const res=Q.qs.map((q,i)=>{const a=Q.ans[i];if(q.type==='mcq')return{s:a===q.answer?1:0,mine:a!=null?q.options[a]:null,correct:q.options[q.answer],fb:q.explain};return{s:0,mine:a||null,correct:q.answer,fb:q.explain,ai:true}});
+  const need=res.map((r,i)=>r.ai&&r.mine&&r.mine.trim()?{i,q:Q.qs[i].q,correct:Q.qs[i].answer,student:r.mine}:null).filter(Boolean);
+  if(need.length){
+    try{
+      const g=pj(await ai([{role:'user',text:`پاسخ دانش‌آموز را با پاسخ درست مقایسه و تصحیح کن. برای هر مورد score بین 0 تا 1 (می‌تواند 0.5 هم باشد) و یک feedback کوتاه فارسی بده. فقط آرایه JSON به این شکل برگردان: [{"i":شماره,"score":0.5,"feedback":"..."}]\n${JSON.stringify(need)}`}],{max:2500}));
+      g.forEach(x=>{const r=res[x.i];if(r){r.s=Math.max(0,Math.min(1,+x.score||0));r.fb=(x.feedback||'')+(r.fb?'\n'+r.fb:'')}});
+    }catch(e){toast('تصحیح هوشمند انجام نشد؛ جواب‌های درست رو خودت مقایسه کن',4000)}
+  }
+  Q.res=res;Q.pct=Math.round(res.reduce((a,r)=>a+r.s,0)/res.length*100);
+  Q.qs.forEach((q,i)=>{const k=Q.subject+'|'+(q.topic||'عمومی');const w=S.weak[k]=S.weak[k]||{s:Q.subject,t:q.topic||'عمومی',w:0,n:0};w.n++;if(res[i].s<1)w.w++;else if(w.w>0&&res[i].s===1&&w.n>3)w.w=Math.max(0,w.w-.5)});
+  S.quizzes.push({date:today(),subject:Q.subject,pct:Q.pct,n:Q.qs.length});addLog(Math.ceil(Q.qs.length*1.5),Q.subject);save();
+  Q.state='done';go('quiz');
+}
+
+/* ---- فلش‌کارت و مرور ---- */
+let R=null;
+V.cards=()=>{
+  if(R){
+    if(!R.q.length){const d=R.n;R=null;return `<div class="card" style="text-align:center"><h3>🎉 مرور تمام شد</h3><p>${fa(d)} کارت مرور کردی. آفرین!</p><button class="btn" data-a="go" data-t="cards">برگشت</button></div>`}
+    const c=R.q[0];
+    return `<div class="card"><div class="row mut"><span class="tag">${esc(c.s)}</span><span style="margin-inline-start:auto">${fa(R.q.length)} کارت مانده</span></div><div class="flash" data-a="flip">${md(R.show?c.a:c.q)}</div>
+    ${R.show?`<div class="grid g3"><button class="btn red" data-a="rate" data-r="1">سخت 😓</button><button class="btn sec" data-a="rate" data-r="2">خوب 🙂</button><button class="btn" style="background:#15803d" data-a="rate" data-r="3">آسان 😎</button></div>`:`<button class="btn full" data-a="flip">نمایش پاسخ</button>`}
+    <button class="btn sec sm" style="margin-top:10px" data-a="go" data-t="cards">خروج از مرور</button></div>`;
+  }
+  const due=dueCards().length;
+  return `${noKeyBanner()}<div class="card"><h3>🃏 فلش‌کارت‌ها</h3><div class="mut">${fa(S.cards.length)} کارت — ${fa(due)} کارت برای مرور امروز</div><button class="btn full" style="margin-top:8px" data-a="review" ${due?'':'disabled'}>شروع مرور هوشمند</button></div>
+  <div class="card"><h3>✨ ساخت خودکار با هوش مصنوعی</h3><select id="cs">${subjOpts('ریاضی ۱')}</select><input id="ct" placeholder="مبحث (مثلاً «قوانین نیوتون»)"><select id="cn"><option>5</option><option selected>10</option><option>15</option></select><button class="btn full" data-a="cgen">بساز</button></div>
+  <div class="card"><h3>➕ افزودن دستی</h3><select id="ms">${subjOpts('ریاضی ۱')}</select><input id="mq" placeholder="سوال / روی کارت"><input id="ma" placeholder="جواب"><button class="btn sec full" data-a="cadd">افزودن</button></div>
+  ${S.cards.length?`<div class="card"><h3>همه کارت‌ها</h3>${S.cards.slice().reverse().slice(0,40).map(c=>`<div class="task"><span style="flex:1"><span class="tag">${esc(c.s)}</span> ${esc(c.q)}</span><button class="btn sm sec" data-a="cdel" data-id="${c.id}">🗑</button></div>`).join('')}</div>`:''}`;
+};
+function newCard(s,q,a){return{id:uid(),s,q,a,iv:0,ease:2.5,reps:0,due:today()}}
+function startReview(){const d=dueCards();if(!d.length){toast('امروز کارتی برای مرور نیست 👌');return}R={q:d.sort(()=>Math.random()-.5),show:false,n:0};go('cards')}
+
+/* ---- خلاصه‌ساز ---- */
+let nImg=null,nOut='';
+V.notes=()=>`${noKeyBanner()}<div class="card"><h3>📄 خلاصه‌ساز جزوه</h3><label>درس</label><select id="ns">${subjOpts('فیزیک ۱')}</select>
+<textarea id="nt" placeholder="متن جزوه یا درس رو اینجا بچسبون... (یا عکس بفرست)"></textarea><div id="nimg"></div>
+<div class="row"><button class="btn sec" data-a="nimgpick">📷 عکس</button></div>
+<div class="chips"><button class="chip on" data-a="nmode" data-v="خلاصه">خلاصه</button><button class="chip" data-a="nmode" data-v="نکات کلیدی">نکات کلیدی</button><button class="chip" data-a="nmode" data-v="نمونه‌سوال">نمونه‌سوال</button><button class="chip" data-a="nmode" data-v="آموزش ساده">آموزش ساده</button></div>
+<button class="btn full" data-a="nrun">بساز</button><div id="nout"></div></div>`;
+let nMode='خلاصه';
+
+/* ---- برنامه‌ریز ---- */
+V.plan=()=>{
+  const t=today(),days=[...new Set(S.plan.filter(p=>p.date>=t).map(p=>p.date))].sort();
+  return `${noKeyBanner()}<div class="card"><h3>🗓 امتحان‌ها</h3>${S.exams.filter(e=>e.date>=t).sort((a,b)=>a.date.localeCompare(b.date)).map(e=>`<div class="task"><span style="flex:1"><span class="tag">${esc(e.subject)}</span> ${pf(e.date)}</span><button class="btn sm sec" data-a="edel" data-id="${e.id}">🗑</button></div>`).join('')||'<div class="mut">هنوز امتحانی ثبت نکردی.</div>'}
+  <div class="row" style="margin-top:8px"><select id="es" style="flex:1">${subjOpts('ریاضی ۱')}</select><input id="ed" type="date" style="flex:1"></div><button class="btn sec full" data-a="eadd">ثبت امتحان</button></div>
+  <div class="card"><h3>⚙️ ساخت برنامه هفتگی</h3><label>چند ساعت در روز می‌تونی درس بخونی؟</label><input id="ph" type="number" min="1" max="12" step="0.5" value="${S.hours}"><button class="btn full" data-a="pgen">✨ برنامه‌ی ۷ روز آینده رو بچین</button>
+  <div class="row" style="margin-top:8px"><label class="row" style="color:var(--tx)"><input type="checkbox" style="width:20px;margin:0" data-a="notif" ${S.notify?'checked':''}> یادآور هنگام باز کردن اپ</label></div></div>
+  ${days.map(d=>`<div class="card"><h3>${pf(d)}${d===t?' <span class="tag">امروز</span>':''}</h3>${S.plan.filter(p=>p.date===d).map(taskHtml).join('')}</div>`).join('')}`;
+};
+
+/* ---- آمار ---- */
+V.stats=()=>{
+  const t=today(),ds=[...Array(7)].map((_,i)=>addDays(t,i-6)),mx=Math.max(30,...ds.map(d=>S.log[d]||0));
+  const bars=ds.map((d,i)=>{const h=(S.log[d]||0)/mx*110,x=12+i*46;return `<rect x="${x}" y="${130-h}" width="30" height="${h}" rx="6" fill="#6366f1"/><text x="${x+15}" y="146" text-anchor="middle">${pf(d,{weekday:'narrow'})}</text><text x="${x+15}" y="${125-h}" text-anchor="middle">${S.log[d]?fa(S.log[d]):''}</text>`}).join('');
+  const total=Object.values(S.log).reduce((a,b)=>a+b,0),w=weakList(6),qs=S.quizzes.slice(-8);
+  const avg=S.quizzes.length?Math.round(S.quizzes.reduce((a,q)=>a+q.pct,0)/S.quizzes.length):0;
+  const pts=qs.map((q,i)=>`${15+i*(qs.length>1?290/(qs.length-1):0)},${100-q.pct*.9}`).join(' ');
+  return `<div class="grid g3" style="margin-bottom:12px"><div class="stat"><b>${fa(Math.round(total/60*10)/10)}</b><small>ساعت مطالعه</small></div><div class="stat"><b>${fa(streak())}</b><small>روز پیاپی</small></div><div class="stat"><b>${fa(avg)}٪</b><small>میانگین آزمون</small></div></div>
+  <div class="card"><h3>مطالعه ۷ روز اخیر (دقیقه)</h3><svg viewBox="0 0 330 155" width="100%">${bars}</svg></div>
+  <div class="card"><h3>روند نمره آزمون‌ها</h3>${qs.length>1?`<svg viewBox="0 0 330 110" width="100%"><polyline points="${pts}" fill="none" stroke="#8b5cf6" stroke-width="3"/>${qs.map((q,i)=>`<circle cx="${15+i*290/(qs.length-1)}" cy="${100-q.pct*.9}" r="4" fill="#a5b4fc"/>`).join('')}</svg>`:'<div class="mut">حداقل دو آزمون بده تا نمودار بیاد.</div>'}</div>
+  <div class="card"><h3>🎯 مباحث ضعیف تو</h3>${w.length?w.map(x=>`<div class="row" style="justify-content:space-between;margin:4px 0"><span><span class="tag">${esc(x.s)}</span> ${esc(x.t)}</span><span class="mut">${fa(x.w)} اشتباه از ${fa(x.n)}</span></div>`).join('')+`<button class="btn full" style="margin-top:8px" data-a="weakquiz">تمرین همین ضعف‌ها</button>`:'<div class="mut">بعد از چند آزمون، ضعف‌هات اینجا پیدا می‌شن.</div>'}</div>`;
+};
+
+/* ---- تنظیمات و تایمر ---- */
+function overlay(html){closeOv();const o=document.createElement('div');o.className='ov';o.id='ov';o.innerHTML=`<div class="card">${html}</div>`;document.body.appendChild(o);o.addEventListener('click',e=>{if(e.target===o&&!P)closeOv()})}
+const closeOv=()=>$('#ov')?.remove();
+const ACC={indigo:['#6366f1','#8b5cf6'],emerald:['#10b981','#06b6d4'],rose:['#f43f5e','#f97316'],amber:['#f59e0b','#ef4444'],sky:['#0ea5e9','#6366f1'],violet:['#a855f7','#ec4899']};
+const seg=(a,cur,opts)=>`<div class="seg">${opts.map(([v,l])=>`<button class="${String(cur)===String(v)?'on':''}" data-a="${a}" data-v="${v}">${l}</button>`).join('')}</div>`;
+function setS(p,v){const k=p.split('.');let o=S;while(k.length>1)o=o[k.shift()];o[k[0]]=typeof v==='string'?v.trim():v;save()}
+function applyTheme(){const h=document.documentElement;h.dataset.mode=S.mode;h.dataset.accent=S.accent;h.style.setProperty('--fs',S.fs+'px');const m=document.querySelector('meta[name=theme-color]');if(m)m.content=ACC[S.accent]?ACC[S.accent][0]:'#6366f1'}
+function hdr(){$('#hb1').innerHTML=ic('timer',20);$('#hb2').innerHTML=ic('settings',20)}
+function readCfg(){if($('#sk')){S.cfg.key=$('#sk').value.trim();S.cfg.model=$('#sm').value.trim();if($('#su'))S.cfg.base=$('#su').value.trim()||DEF.cfg.base;save()}}
+const rs=()=>{const y=scrollY;go('settings');scrollTo(0,y)};
+V.settings=()=>{const c=S.cfg;return `
+<div class="card row"><div class="avatar">${esc((S.name||'؟').trim().charAt(0)||'؟')}</div><div style="flex:1"><label>اسم تو</label><input data-s="name" value="${esc(S.name)}" placeholder="مثلاً امیر"></div></div>
+<div class="sect">${ic('palette',18)} ظاهر اپ</div>
+<div class="card"><label>حالت نمایش</label>${seg('setmode',S.mode,[['auto','خودکار'],['light','روشن'],['dark','تیره']])}
+<label style="display:block;margin-top:14px">رنگ اصلی</label><div class="swatches">${Object.entries(ACC).map(([k,v])=>`<button class="swatch ${S.accent===k?'on':''}" data-a="setaccent" data-v="${k}" style="background:linear-gradient(135deg,${v[0]},${v[1]})" aria-label="${k}"></button>`).join('')}</div>
+<label style="display:block;margin-top:14px">اندازه‌ی نوشته‌ها</label>${seg('setfs',S.fs,[[14,'کوچک'],[15,'متوسط'],[17,'بزرگ']])}</div>
+<div class="sect">${ic('target',18)} مطالعه</div>
+<div class="card"><label>هدف مطالعه‌ی روزانه (دقیقه)</label><input type="number" inputmode="numeric" data-s="goal" min="10" max="720" step="5" value="${S.goal}">
+<div class="chips">${[30,60,90,120,180].map(m=>`<button class="chip ${+S.goal===m?'on':''}" data-a="setgoal" data-v="${m}">${fa(m)}</button>`).join('')}</div>
+<div class="setrow"><span>یادآور هنگام باز کردن اپ</span><label class="sw"><input type="checkbox" data-a="notif" ${S.notify?'checked':''}><i></i></label></div></div>
+<div class="sect">${ic('book',18)} درس‌های فعال</div>
+<div class="card"><div class="chips">${SUBJECTS.map(s=>`<button class="chip ${act().includes(s)?'on':''}" data-a="subjtog" data-v="${esc(s)}">${esc(s)}</button>`).join('')}</div><div class="mut">فقط درس‌های روشن توی لیست‌ها دیده می‌شن.</div></div>
+<div class="sect">${ic('sparkles',18)} هوش مصنوعی</div>
+<div class="card"><label>لحن معلم</label>${seg('settone',S.tone,[['دوستانه','دوستانه'],['جدی','جدی'],['انگیزشی','انگیزشی']])}
+<label style="display:block;margin-top:12px">طول جواب‌ها</label>${seg('setlen',S.len,[['کوتاه','کوتاه'],['متوسط','متوسط'],['مفصل','مفصل']])}
+<label style="display:block;margin-top:12px">سرویس</label><select data-a="sprov"><option value="anthropic" ${c.provider==='anthropic'?'selected':''}>Claude (Anthropic)</option><option value="openai" ${c.provider==='openai'?'selected':''}>سازگار با OpenAI (آدرس دلخواه)</option></select>
+<label>کلید API</label><input id="sk" type="password" data-s="cfg.key" value="${esc(c.key)}" placeholder="sk-..." dir="ltr" autocomplete="off">
+${c.provider==='openai'?`<label>آدرس پایه (Base URL)</label><input id="su" data-s="cfg.base" value="${esc(c.base)}" dir="ltr">`:''}
+<label>نام مدل</label><input id="sm" data-s="cfg.model" value="${esc(c.model)}" dir="ltr">
+<button class="btn full" style="margin-top:8px" data-a="stest">تست اتصال</button>
+<p class="mut" style="margin:8px 0 0">کلید فقط روی همین گوشی ذخیره می‌شه و فقط به سرویس خودت فرستاده می‌شه.</p></div>
+<div class="sect">${ic('data',18)} داده‌ها</div>
+<div class="card"><div class="row"><button class="btn sec full" data-a="bexp">پشتیبان‌گیری</button><button class="btn sec full" data-a="bimp">بازیابی</button></div><button class="btn red full" style="margin-top:8px" data-a="wipe">پاک کردن همه‌ی داده‌ها</button></div>
+<div class="mut" style="text-align:center;margin-top:8px">یار درسی · نسخه ۲</div>`};
+let P=null,PI=null;
+function pomo(){
+  if(P){pomoDraw();return}
+  overlay(`<h3>⏱ تایمر تمرکز</h3><label>درس</label><select id="ps">${subjOpts('ریاضی ۱')}</select><label>مدت (دقیقه)</label><div class="chips">${[15,25,45,60].map(m=>`<button class="chip ${m===25?'on':''}" data-a="pmin" data-m="${m}">${fa(m)}</button>`).join('')}</div><button class="btn full" data-a="pstart">شروع</button><button class="btn sec full" style="margin-top:8px" data-a="closeov">بستن</button>`);
+}
+let pm=25;
+function pomoDraw(){
+  overlay(`<h3 style="text-align:center">${esc(P.subject)}</h3><div class="timer" id="pt">--:--</div><div class="bar" style="margin:10px 0"><i id="pb" style="width:0"></i></div><p class="mut" style="text-align:center">گوشی رو بذار کنار و تمرکز کن 🎯</p><button class="btn red full" data-a="pstop">انصراف</button><button class="btn sec full" style="margin-top:8px" data-a="closeov">پنهان کردن</button>`);
+  tick();
+}
+function tick(){
+  if(!P)return;const left=Math.max(0,P.end-Date.now()),s=Math.ceil(left/1000);
+  const t=$('#pt');if(t)t.textContent=String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');
+  const b=$('#pb');if(b)b.style.width=(100-left/(P.mins*60000)*100)+'%';
+  if(left<=0){clearInterval(PI);addLog(P.mins,P.subject);save();navigator.vibrate?.([300,150,300]);toast(`✅ ${fa(P.mins)} دقیقه تمرکز ثبت شد، آفرین!`,5000);try{if(Notification.permission==='granted')new Notification('یار درسی',{body:'زمان تمرکز تمام شد! استراحت کن ☕'})}catch(e){}P=null;closeOv();go(tab)}
+}
+
+/* ============ رویدادها ============ */
+const A={
+  go:t=>go(t.dataset.t),
+  settings:()=>go('settings'),closeov:()=>closeOv(),
+  pomo:()=>pomo(),
+  pmin:t=>{pm=+t.dataset.m;document.querySelectorAll('[data-a=pmin]').forEach(x=>x.classList.toggle('on',x===t))},
+  pstart:()=>{P={subject:$('#ps').value,mins:pm,end:Date.now()+pm*60000};try{Notification.requestPermission?.()}catch(e){}clearInterval(PI);PI=setInterval(tick,500);pomoDraw()},
+  pstop:()=>{clearInterval(PI);P=null;closeOv()},
+  setmode:t=>{S.mode=t.dataset.v;save();applyTheme();rs()},
+  setaccent:t=>{S.accent=t.dataset.v;save();applyTheme();rs()},
+  setfs:t=>{S.fs=+t.dataset.v;save();applyTheme();rs()},
+  setgoal:t=>{S.goal=+t.dataset.v;save();rs()},
+  settone:t=>{S.tone=t.dataset.v;save();rs()},
+  setlen:t=>{S.len=t.dataset.v;save();rs()},
+  subjtog:t=>{const v=t.dataset.v,a=act().slice(),i=a.indexOf(v);if(i>=0){if(a.length<=1)return toast('حداقل یک درس باید فعال باشه');a.splice(i,1)}else a.push(v);S.subjects=SUBJECTS.filter(x=>a.includes(x));save();rs()},
+  sprov:t=>{readCfg();S.cfg.provider=t.value;S.cfg.model=t.value==='openai'?'gpt-4o-mini':'claude-sonnet-5-5';save();rs()},
+  wipe:()=>{if(confirm('همه‌ی داده‌ها (کارت‌ها، آزمون‌ها، برنامه، آمار و تنظیمات) پاک بشه؟')){localStorage.removeItem(KEY);location.reload()}},
+  stest:async t=>{readCfg();busy(t,true);try{const r=await ai([{role:'user',text:'فقط بنویس: سلام'}],{max:30});toast('اتصال موفق ✅ '+r.slice(0,30))}catch(e){toast(aiErr(e),4500)}busy(t,false)},
+  bexp:()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(S)],{type:'application/json'}));a.download='yar-darsi-backup-'+today()+'.json';a.click()},
+  bimp:async()=>{const f=$('#file');f.accept='.json';f.onchange=async()=>{try{S=Object.assign({},DEF,JSON.parse(await f.files[0].text()));save();toast('بازیابی شد ✅');closeOv();applyTheme();go('home')}catch(e){toast('فایل معتبر نیست')}f.accept='image/*'};f.click()},
+  task:t=>{const p=S.plan.find(x=>x.id===t.dataset.id);p.done=t.checked;addLog(t.checked?p.minutes:-p.minutes,p.subject);save();go(tab)},
+  /* معلم */
+  tsub:t=>{tSubj=t.value;tImg=null;go('tutor');$('#tsub').value=tSubj},
+  send:()=>send(),chip:t=>send(t.dataset.v),
+  timgpick:async()=>{const i=await pickImage();if(i){tImg=i;$('#timg').innerHTML=`<div class="row"><img src="${i.url}" style="height:50px;border-radius:8px"><span class="mut">عکس پیوست شد</span></div>`}},
+  clearchat:()=>{S.chat[tSubj]=[];save();drawChat()},
+  /* آزمون */
+  qstart:()=>startQuiz({subject:$('#qs').value,topic:$('#qt').value.trim(),type:$('#qy').value,diff:$('#qd').value,count:+$('#qn').value}),
+  qopt:t=>{Q.ans[Q.i]=+t.dataset.i;go('quiz')},
+  qnext:()=>{qCollect();if(Q.i+1<Q.qs.length){Q.i++;go('quiz')}else finishQuiz()},
+  qskip:()=>{Q.ans[Q.i]=undefined;if(Q.i+1<Q.qs.length){Q.i++;go('quiz')}else finishQuiz()},
+  qreset:()=>{Q={state:'setup'};go('quiz')},
+  qcards:()=>{let n=0;Q.qs.forEach((q,i)=>{if(Q.res[i].s<1){S.cards.push(newCard(Q.subject,q.q,Q.res[i].correct+(q.explain?'\n'+q.explain:'')));n++}});save();toast(n?`${fa(n)} کارت ساخته شد 🃏`:'اشتباهی نداشتی!')},
+  weakquiz:()=>{const w=weakList(3);if(!w.length){toast('هنوز ضعفی ثبت نشده؛ اول چند آزمون بده 🙂');return}Q={state:'setup'};tab='quiz';go('quiz');const w0=w[0];startQuiz({subject:w0.s,topic:w.map(x=>x.s+': '+x.t).join('، '),type:'mix',diff:'متوسط',count:8,extra:'روی مباحث ضعف دانش‌آموز تمرکز کن و subject هر سوال را در topic بنویس.'})},
+  /* کارت‌ها */
+  review:()=>startReview(),
+  flip:()=>{R.show=!R.show;go('cards')},
+  rate:t=>{const c=R.q.shift(),r=+t.dataset.r;const real=S.cards.find(x=>x.id===c.id);rateCard(real,r);if(r===1)R.q.push(c);else R.n++;R.show=false;addLog(0);save();go('cards')},
+  cadd:()=>{const q=$('#mq').value.trim(),a=$('#ma').value.trim();if(!q||!a)return toast('سوال و جواب رو بنویس');S.cards.push(newCard($('#ms').value,q,a));save();go('cards')},
+  cdel:t=>{S.cards=S.cards.filter(c=>c.id!==t.dataset.id);save();go('cards')},
+  cgen:async t=>{const s=$('#cs').value,tp=$('#ct').value.trim(),n=$('#cn').value;busy(t,true);try{const r=pj(await ai([{role:'user',text:`${n} فلش‌کارت مفید برای مرور درس «${s}» ${tp?'مبحث «'+tp+'»':''} بساز. روی کارت سوال کوتاه و پشتش جواب کوتاه و دقیق. فقط آرایه JSON: [{"q":"...","a":"..."}] بدون LaTeX.`}],{max:3500}));r.filter(x=>x.q&&x.a).forEach(x=>S.cards.push(newCard(s,String(x.q),String(x.a))));save();toast('کارت‌ها ساخته شد ✅');go('cards')}catch(e){toast(aiErr(e),4500)}busy(t,false)},
+  /* جزوه */
+  nimgpick:async()=>{const i=await pickImage();if(i){nImg=i;$('#nimg').innerHTML=`<img src="${i.url}" style="height:60px;border-radius:8px">`}},
+  nmode:t=>{nMode=t.dataset.v;document.querySelectorAll('[data-a=nmode]').forEach(x=>x.classList.toggle('on',x===t))},
+  nrun:async t=>{const txt=$('#nt').value.trim();if(!txt&&!nImg)return toast('متن یا عکس جزوه رو بده');busy(t,true);
+    const ask={خلاصه:'یک خلاصه منظم و کوتاه',['نکات کلیدی']:'نکات کلیدی و فرمول‌های مهم به‌صورت فهرست',['نمونه‌سوال']:'۵ نمونه‌سوال (ترکیبی) همراه با پاسخ کوتاه',['آموزش ساده']:'یک آموزش ساده و گام‌به‌گام با مثال'}[nMode];
+    try{const r=await ai([{role:'user',text:`درس: ${$('#ns').value}. از روی این جزوه ${ask} بنویس.\n\n${txt}`,img:nImg}],{max:3000});nOut=r;$('#nout').innerHTML=`<div class="out">${md(r)}</div><button class="btn sec full" style="margin-top:8px" data-a="ncards">🃏 ساخت فلش‌کارت از این</button>`}catch(e){toast(aiErr(e),4500)}busy(t,false)},
+  ncards:async t=>{busy(t,true);try{const s=$('#ns').value;const r=pj(await ai([{role:'user',text:`از این متن ۸ فلش‌کارت بساز. فقط آرایه JSON: [{"q":"...","a":"..."}]\n\n${nOut}`}],{max:3000}));r.filter(x=>x.q&&x.a).forEach(x=>S.cards.push(newCard(s,String(x.q),String(x.a))));save();toast('کارت‌ها اضافه شد ✅')}catch(e){toast(aiErr(e),4500)}busy(t,false)},
+  /* برنامه */
+  eadd:()=>{const d=$('#ed').value;if(!d)return toast('تاریخ رو انتخاب کن');S.exams.push({id:uid(),subject:$('#es').value,date:d});save();go('plan')},
+  edel:t=>{S.exams=S.exams.filter(e=>e.id!==t.dataset.id);save();go('plan')},
+  notif:async t=>{S.notify=t.checked;if(t.checked){try{const p=await Notification.requestPermission();if(p!=='granted')toast('اجازه اعلان داده نشد')}catch(e){}}save()},
+  pgen:async t=>{S.hours=+$('#ph').value||3;busy(t,true);const td=today();
+    const ex=S.exams.filter(e=>e.date>=td).map(e=>({subject:e.subject,date:e.date}));
+    const w=weakList(5).map(x=>x.s+': '+x.t);
+    try{const r=pj(await ai([{role:'user',text:`یک برنامه مطالعه برای ۷ روز آینده بساز. امروز ${td} است (${pf(td)}). تاریخ‌ها را میلادی به‌صورت YYYY-MM-DD بنویس، از امروز شروع کن.
+درس‌های دانش‌آموز: ${act().join('، ')}.
+امتحان‌ها: ${JSON.stringify(ex)}. مباحث ضعیف: ${JSON.stringify(w)}.
+هر روز حدود ${S.hours} ساعت (مجموع minutes هر روز). درس‌های نزدیک‌ترین امتحان و ضعف‌ها اولویت بیشتر دارند، درس‌های اصلی (ریاضی، فیزیک، شیمی، زیست، هندسه) را متوازن بچین و از تکرار یک درس در کل روز بپرهیز. topic باید مبحث مشخصی از کتاب باشد.
+فقط آرایه JSON: [{"date":"YYYY-MM-DD","subject":"...","topic":"...","minutes":45}]`}],{max:4000}));
+      const ok=r.filter(x=>x.date&&x.subject&&x.topic&&x.minutes).map(x=>({id:uid(),date:x.date,subject:String(x.subject),topic:String(x.topic),minutes:Math.round(+x.minutes)||30,done:false}));
+      if(!ok.length)throw new Error('برنامه‌ای ساخته نشد');
+      S.plan=S.plan.filter(p=>p.date<td).concat(ok);save();toast('برنامه آماده شد 📅');go('plan')}catch(e){toast(aiErr(e),4500)}busy(t,false)}
+};
+document.addEventListener('click',e=>{const t=e.target.closest('[data-a]');if(!t||t.tagName==='INPUT'&&t.type==='checkbox'&&e.type==='click'&&false)return;if(t.tagName==='SELECT'||(t.tagName==='INPUT'&&t.type==='checkbox'))return;A[t.dataset.a]?.(t,e)});
+document.addEventListener('change',e=>{const el=e.target;if(el.dataset&&el.dataset.s){setS(el.dataset.s,el.type==='number'?(+el.value||0):el.value);return}const t=el.closest('[data-a]');if(t&&(t.tagName==='SELECT'||(t.tagName==='INPUT'&&t.type==='checkbox')))A[t.dataset.a]?.(t,e)});
+
+/* ============ شروع ============ */
+if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
+applyTheme();hdr();{const q0=new URLSearchParams(location.search).get('tab');go(V[q0]?q0:'home')}
+if(S.notify){const n=S.plan.filter(p=>p.date===today()&&!p.done).length,d=dueCards().length;if((n||d)&&window.Notification&&Notification.permission==='granted'){try{new Notification('یار درسی 📚',{body:`امروز ${fa(n)} کار برنامه و ${fa(d)} کارت برای مرور داری`})}catch(e){}}}
+</script>
+</body>
+</html>
